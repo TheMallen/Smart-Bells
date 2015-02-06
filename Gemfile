@@ -14,6 +14,8 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'jquery-rails'
 # Use ActiveModel has_secure_password
 gem 'bcrypt', '3.1.7'
+# Speed up page loading
+gem 'turbolinks'
   
 # Windows helpers
 if Gem.win_platform?
