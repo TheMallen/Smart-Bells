@@ -13,8 +13,8 @@ gem 'coffee-rails', '~> 4.1.0'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Use ActiveModel has_secure_password
-gem 'bcrypt', '~> 3.1.7'
-
+gem 'bcrypt', '3.1.7'
+  
 # Windows helpers
 if Gem.win_platform?
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
@@ -49,5 +49,5 @@ group :production do
   # Used by Heroku to serve static assets
   gem 'rails_12factor'
   # Use Unicorn as the app server
-  gem 'unicorn'
+  gem 'unicorn' unless Gem.win_platform? # Unicorn requires KGIO which does not run on windows
 end
