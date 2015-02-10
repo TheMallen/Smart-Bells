@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+# Include the Bootstrap SCSS framework :)
+gem 'bootstrap-sass', '~> 3.3.3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,15 +36,8 @@ group :development, :test do
   gem 'spring'
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console', '~> 2.0'
-end
-
-group :test do
-  # Nicer test reporters
-  gem 'minitest-reporters'
-  # Nicer test traces
-  gem 'mini_backtrace'
-  # More test enhancements
-  gem 'guard-minitest'
+  # Test using RSPEC
+  gem 'rspec-rails', '~> 3.0'
 end
 
 group :production do
