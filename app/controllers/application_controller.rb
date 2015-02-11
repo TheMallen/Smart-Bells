@@ -4,5 +4,5 @@ class ApplicationController < ActionController::Base
 
   # All controllers inheriting from ApplicationController have access
   # to session operations
-  include sessionable
+  include Sessionable
 end
