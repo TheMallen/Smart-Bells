@@ -1,14 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>WorkoutApp</title>
+  <title>Workout App - <%= yield(:page_name) %> </title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
+  <%= shim %>
 </head>
 <body>
-<%= render header %>
-<%= yield %>
+<div class="container">
+    <%= header %>
+    <%= yield %>
+</div>
 
 </body>
 </html>

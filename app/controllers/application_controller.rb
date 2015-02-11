@@ -1,5 +1,8 @@
 class ApplicationController < ActionController::Base
   # Prevent CSRF attacks by raising an exception.
-  # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
+
+  # All controllers inheriting from ApplicationController have access
+  # to session operations
+  include sessionable
 end

@@ -1,7 +1,20 @@
-/*  
+/*
  * application.scss
  * Author: Mathew Allen
  * Primarily imports other SCSS files.
  */
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "./colours";
+
+$brand-primary: #3498db;
+
+header {
+  nav {
+    a {
+      color: $brand-primary;
+    }
+  }
+  border-bottom: $brand-primary;
+}
+
