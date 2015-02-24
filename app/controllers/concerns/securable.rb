@@ -30,6 +30,7 @@ module Securable
   end
 
   # only allow access if the current user owns this resource
+  # meant to be used inside an action
   def require_owner_of item
     # if the item is a user we need to BE them
     return require_logged_in_as item if item.class == User
