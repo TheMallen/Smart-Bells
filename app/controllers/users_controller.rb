@@ -2,6 +2,8 @@
 # Author: Mathew Allen
 # Controller which sets up resourceful actions for interacting with user models.
 class UsersController < ApplicationController
+
+  include Securable
   # The new action creates a new user to bind to the form
   # rails will then magically render the corresponding template
   def new
@@ -24,6 +26,9 @@ class UsersController < ApplicationController
   # Finds and attaches the user by id
   # magically renders the corresponding view
   def show
+    # For now we secure the show field
+    requested_user = User.find params[:id]
+    require_owner_of requested_user
     @user = User.find params[:id]
   end
 
