@@ -15,7 +15,9 @@ module Sessionable
   # Callback for when this mixin is included into a controller
   def self.included base
     # This method needs to be accessible to the view layer
-    base.helper_method current_user
+    base.helper_method :current_user
+    # This method also needs to be accessible to the view layer
+    base.helper_method :logged_in?
   end
 
   # Stores the given user's id in session cookies
@@ -25,7 +27,7 @@ module Sessionable
 
   # Returns the cached user or finds it based on session data
   def current_user
-    @current_user ||= User.find session[:user_id]
+    @current_user ||= User.find_by id: session[:user_id]
   end
 
   # Destroys the session data resets the current user to nil
@@ -33,5 +35,11 @@ module Sessionable
     session[:user_id] = nil
     @current_user = nil
   end
+
+  # Returns true if logged in, false otherwise
+  def logged_in?
+    !session[:user_id].nil?
+  end
+
 
 end

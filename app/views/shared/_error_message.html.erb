@@ -1,0 +1,20 @@
+<%
+# _error_messages.html.erb
+# By Mathew Allen
+# Based on errors partial from reference 1
+# Displays all error messages using bootsrap components
+%>
+<%
+# only render anything if there are errors
+if errors && errors.any? %>
+  <div id="error_explanation">
+    <div class="alert alert-danger">
+      The form contains <%= pluralize(errors.count, "error") %>.
+    </div>
+    <ul>
+    <% errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+<%
+# new.html.erb
+# By Mathew Allen
+# Based on user page from reference 1
+%>
+<% provide(:title, @user.username) %>
+<div class="container">
+     <div class="row">
+      <section class="user_info jumbotron">
+      <h1>
+        <%= gravatar_for @user, size: 100 %>
+        <%= @user.username %>
+      </h1>
+      </section>
+      <section>
+        <p>Welcome to demo</p>
+      </section>
+  </div>
+</div>

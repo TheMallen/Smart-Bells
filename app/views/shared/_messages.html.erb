@@ -1,0 +1,10 @@
+<%
+# _messages.html.erb
+# From: Ruby on Rails tutorial (reference 1)
+# Displays all flash messages using bootstrap components
+%>
+ <% flash.each do |message_type, message|%>
+  <div class="alert alert-<%= message_type %>">
+    <%= message %>
+  </div>
+<% end %>

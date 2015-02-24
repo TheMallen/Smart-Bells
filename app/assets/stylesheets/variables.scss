@@ -1,0 +1,44 @@
+
+/*
+  application.scss
+  By Mathew Allen
+  This file exists to set up variables for the application's stylesheets
+  It largely overwrites bootstrap variables.
+*/
+
+//colours from http://flatuicolors.com/
+$alizarin: #e74c3c;
+$pomegranate: #c0392b;
+$peter-river: #3498db;
+$clouds: #ecf0f1;
+$wet-ashphalt: #34495e;
+
+// Base colours used all over
+$gray-base:  $wet-ashphalt;
+$brand-primary: $peter-river;
+
+// Navbar base colours
+$navbar-default-color:             #777;
+$navbar-default-bg:                $clouds;
+$navbar-default-border:            darken($navbar-default-bg, 6.5%) !default;
+
+// Navbar links
+$navbar-default-link-color:                $peter-river;
+$navbar-default-link-hover-color:          darken($navbar-default-link-color, 5%);
+$navbar-default-link-hover-bg:             transparent;
+$navbar-default-link-active-color:         #555;
+$navbar-default-link-active-bg:            darken($navbar-default-bg, 6.5%);
+$navbar-default-link-disabled-color:       #ccc;
+$navbar-default-link-disabled-bg:          transparent;
+
+// Navbar brand label
+$navbar-default-brand-color:               $navbar-default-link-color;
+$navbar-default-brand-hover-color:         darken($navbar-default-brand-color, 10%);
+$navbar-default-brand-hover-bg:            transparent;
+
+
+//Form states and alerts
+
+$state-danger-text:              white;
+$state-danger-bg:                $alizarin;
+$state-danger-border:            darken(adjust-hue($state-danger-bg, -10), 5%);

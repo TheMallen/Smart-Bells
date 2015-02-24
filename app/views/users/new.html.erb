@@ -1,0 +1,30 @@
+<%
+# new.html.erb
+# By Mathew Allen
+# Based on signup T form from reference 1
+%>
+<% provide(:page_name, 'Sign Up') %>
+<div class="container">
+ <h1>Sign up</h1>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@user) do |f| %>
+      <%= render partial: "shared/error_message", locals: {errors: @user.errors} %>
+        <%= f.label :username %>
+        <%= f.text_field :username, class: 'form-control' %>
+
+        <%= f.label :email %>
+        <%= f.email_field :email, class: 'form-control' %>
+
+        <%= f.label :password %>
+        <%= f.password_field :password, class: 'form-control' %>
+
+        <%= f.label :password_confirmation, "Confirmation" %>
+        <%= f.password_field :password_confirmation, class: 'form-control' %>
+
+        <%= f.submit "Create my account", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

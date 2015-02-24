@@ -3,18 +3,29 @@
  * Author: Mathew Allen
  * Primarily imports other SCSS files.
  */
+
+/*
+  Bootstrap variable overwrites
+*/
+@import "./variables";
+/*
+  Bootstrap
+*/
 @import "bootstrap-sprockets";
 @import "bootstrap";
-@import "./colours";
 
-$brand-primary: #3498db;
 
-header {
-  nav {
-    a {
-      color: $brand-primary;
+body {
+  padding-top: 70px;
+}
+nav {
+  header {
+    nav {
+      a {
+        color: $brand-primary;
+      }
     }
+    border-bottom: $brand-primary;
   }
-  border-bottom: $brand-primary;
 }
 
