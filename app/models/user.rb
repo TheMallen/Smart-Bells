@@ -33,5 +33,9 @@ class User < ActiveRecord::Base
     self.username = username.downcase
   end
 
+  # Set up associations for workouts
+  has_many :workout_sessions
+  has_many :personal_records
+  has_many :routines
 
 end
