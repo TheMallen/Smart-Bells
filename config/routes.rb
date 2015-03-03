@@ -3,16 +3,26 @@
 # Sets up routes for the application
 
 Rails.application.routes.draw do
-  # Routes exceedingly similar to reference 1...
-  # But what else would I call them?
-
   # Set up named routes
+
+  # root route
   root 'static_pages#home'
   get 'signup' => 'users#new'
+
+  # login/out routes
   get 'login' => 'sessions#new'
   post 'login' => 'sessions#create'
   delete 'logout' => 'sessions#destroy'
 
-  # Set up resourceful routes
-  resources :users
+  # set up resourceful routes
+  resources :users do
+  end
+
+  # routes for creating a new workout
+  resources :workout_sessions do
+    collection do
+      get 'choose_routine', to: 'workout_sessions#choose_routine', as: 'choose_routine'
+      get 'new_for_routine/:routine', to: 'workout_sessions#new_for_routine', as: 'new_for_routine'
+    end
+  end
 end

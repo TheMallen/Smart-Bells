@@ -1,0 +1,22 @@
+<%
+# choose_routine.html.erb
+# By Mathew Allen
+# Displays the routine options available
+%>
+<% provide(:page_name, 'Choose a Routine') %>
+<div class="container">
+  <div class="jumbotron text-center">
+    <h1>Choose a Routine for Your Workout</h1>
+   </div>
+  <div class="row">
+   <div class="col-xs-12">
+     <% for @choice in @choices %>
+         <div class=" text-center col-xs-12 col-md-3 col-lg-2">
+           <%= link_to @choice.name,
+                       new_for_routine_workout_sessions_path(@choice.name),
+                       class: "btn btn-primary btn-lg" %>
+         </div>
+      <% end %>
+    </div>
+  </div>
+</div>

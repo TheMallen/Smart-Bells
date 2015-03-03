@@ -12,8 +12,22 @@
         <%= @user.username %>
       </h1>
       </section>
-      <section>
-        <p>Welcome to demo</p>
+      <section class="user-actions"
+        <%= link_to "New Workout", choose_routine_workout_sessions_path, { class: 'btn btn-lg btn-primary' } %>
       </section>
+      <section class="workout-log">
+        <h3>Recent Workouts</h3>
+        <ul class="list-group">
+          <% for @workout in @user.workout_sessions %>
+          <li class="list-group-item">
+            <%= link_to @workout.name, @workout %>
+            <span class="pull-right">
+              <%= time_ago_in_words @workout.created_at %> ago
+            </span>
+          </li>
+          <% end %>
+        </ul>
+      </section>
+
   </div>
 </div>

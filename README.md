@@ -26,13 +26,3 @@ General Sources
 ---------------
 1. Ruby on Rails Tutorial (3rd Ed.). (n.d.). Retrieved February 23, 2015, from https://www.railstutorial.org/book
 2. Guides.rubyonrails.org. (n.d.). Retrieved February 23, 2015, from http://guides.rubyonrails.org
-
-A note on code from Ruby on Rails Tutorial
-------------------------------------------
-In some places my code is very similar, and in others I took issue with the architecture they used (after reading the Ruby on Rails guides a bit). In places where I mostly agreed the code is quite similar. As such I have commented them heavily to show understanding, as well as written in the section header "based on [reference]" in cases where modified but still similar, and "from [reference]" in cases where third party code was kept (done minimally)
-
-It should be noted that
-- even the rails guide code looks almost the same in their example for logins in some places (although they put session handling right in the ApplicationController)
-- login is probably the most generic part of the app and as such it is bound to be similar
-
-**Please let me know if I need to modify this type of code more thoroughly for the larger submissions**

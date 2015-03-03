@@ -26,6 +26,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><%= smart_link_to "Profile", current_user %></li>
+                  <li><%= smart_link_to "New Workout", choose_routine_workout_sessions_path %></li>
                   <li class="divider"></li>
                   <li>
                     <%= smart_link_to "Log out", logout_path, method: "delete" %>

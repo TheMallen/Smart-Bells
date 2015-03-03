@@ -1,0 +1,18 @@
+<%
+# new_for_routine.html.erb
+# By Mathew Allen
+# Allows editing of a workout session
+%>
+<% provide(:page_name, "Edit your workout ") %>
+<div class="container">
+ <h1><%= @workout_session.name%></h1>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@workout_session) do |f| %>
+        <input name="_method" type="hidden" value="patch" />
+       <%= render :partial => "workout_sessions/edit_form", :locals=>{:f=>f} %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150228215125) do
+ActiveRecord::Schema.define(version: 20150302234600) do
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
@@ -22,10 +22,13 @@ ActiveRecord::Schema.define(version: 20150228215125) do
 
   create_table "personal_records", force: :cascade do |t|
     t.integer  "resistance"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
     t.integer  "user_id"
+    t.integer  "exercise_id"
   end
+
+  add_index "personal_records", ["exercise_id"], name: "index_personal_records_on_exercise_id"
 
   create_table "routines", force: :cascade do |t|
     t.string   "name"
@@ -60,15 +63,30 @@ ActiveRecord::Schema.define(version: 20150228215125) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "user_id"
+    t.string   "name"
   end
 
-  create_table "workout_sets", force: :cascade do |t|
-    t.integer  "amount_of_resistance"
-    t.integer  "amount_of_reps"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+  create_table "workout_set_groups", force: :cascade do |t|
+    t.integer  "resistance",         default: 45
+    t.integer  "number_of_sets"
+    t.integer  "reps_per_set"
+    t.datetime "created_at",                      null: false
+    t.datetime "updated_at",                      null: false
     t.integer  "exercise_id"
     t.integer  "workout_session_id"
+  end
+
+  add_index "workout_set_groups", ["exercise_id"], name: "index_workout_set_groups_on_exercise_id"
+  add_index "workout_set_groups", ["workout_session_id"], name: "index_workout_set_groups_on_workout_session_id"
+
+  create_table "workout_sets", force: :cascade do |t|
+    t.integer  "resistance"
+    t.integer  "amount_of_reps"
+    t.datetime "created_at",                         null: false
+    t.datetime "updated_at",                         null: false
+    t.integer  "exercise_id"
+    t.integer  "workout_session_id"
+    t.boolean  "is_complete",        default: false
   end
 
 end

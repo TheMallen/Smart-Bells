@@ -1,0 +1,23 @@
+ <%
+  # _edit_form.html.erb
+  # a partial which generates the form for editing workout_session data
+  # can also be used for creating one based on a routine
+  %>
+   <% @workout_session.workout_set_groups.each_with_index do |set, index| %>
+   <%= f.hidden_field :name, class: 'form-control' %>
+    <h2><%= set.exercise.name.titleize %></h2>
+    <%= f.fields_for :workout_set_groups, set do |ff| %>
+      <%= ff.hidden_field :exercise_id %>
+      <%= ff.hidden_field :id %>
+
+      <%= ff.label :resistance, 'Resistance Level:' %>
+      <%= ff.number_field :resistance, class: 'form-control' %>
+
+      <%= ff.label :reps_per_set, 'Reps Per Set:' %>
+      <%= ff.number_field :reps_per_set, class: 'form-control' %>
+
+      <%= ff.label :number_of_sets, 'Number of Sets:' %>
+      <%= ff.number_field :number_of_sets, class: 'form-control' %>
+    <% end %>
+  <% end %>
+  <%= f.submit "Save", class: "btn btn-primary" %>

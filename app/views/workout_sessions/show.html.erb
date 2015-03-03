@@ -1,0 +1,16 @@
+<%
+# show.html.erb
+# Shows the details of a given session
+%>
+ <div class="container">
+  <div class="row">
+   <h1><%= @workout_session.name %></h1>
+    <% @workout_session.workout_set_groups.each_with_index do |set, index| %>
+        <h2><%= set.exercise.name.titleize %></h2>
+        <p>Resistance: <%= set.resistance %></p>
+        <p>Reps Per Set: <%= set.reps_per_set %></p>
+        <p>Number of Sets: <%= set.number_of_sets %></p>
+    <% end %>
+    <%= link_to "Edit", edit_workout_session_path(@workout_session), { class: 'btn btn-lg btn-primary' } %>
+  </div>
+</div>
