@@ -12,8 +12,8 @@
         <%= @user.username %>
       </h1>
       </section>
-      <section class="user-actions"
-        <%= link_to "New Workout", choose_routine_workout_sessions_path, { class: 'btn btn-lg btn-primary' } %>
+      <section class="user-actions text-center">
+        <%= link_to "New Workout", choose_routine_workout_sessions_path(), { class: 'btn btn-lg btn-primary' } %>
       </section>
       <section class="workout-log">
         <h3>Recent Workouts</h3>
