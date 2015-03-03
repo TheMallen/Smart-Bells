@@ -22,6 +22,9 @@ module Sessionable
 
   # Stores the given user's id in session cookies
   def log_in user
+    file = File.open("silly_log.txt", "w")
+    file.puts "#{user.email} logged in"
+    file.close
     session[:user_id] = user.id
   end
 
@@ -32,6 +35,9 @@ module Sessionable
 
   # Destroys the session data resets the current user to nil
   def log_out
+    file = File.open("silly_log.txt", "w")
+    file.puts "#{current_user.email} logged out"
+    file.close
     session[:user_id] = nil
     @current_user = nil
   end
