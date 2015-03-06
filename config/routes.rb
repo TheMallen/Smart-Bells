@@ -25,4 +25,9 @@ Rails.application.routes.draw do
       get 'new_for_routine/:routine', to: 'workout_sessions#new_for_routine', as: 'new_for_routine'
     end
   end
+
+  # routes for creating a new routine
+  resources :routines do
+  end
+
 end

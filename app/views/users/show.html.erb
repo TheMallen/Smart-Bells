@@ -5,29 +5,80 @@
 %>
 <% provide(:title, @user.username) %>
 <div class="container">
-     <div class="row">
-      <section class="user_info jumbotron">
+   <div class="row">
+    <section class="user_info jumbotron">
       <h1>
         <%= gravatar_for @user, size: 100 %>
         <%= @user.username %>
       </h1>
-      </section>
-      <section class="user-actions text-center">
+      <div class="user-actions">
         <%= link_to "New Workout", choose_routine_workout_sessions_path(), { class: 'btn btn-lg btn-primary' } %>
-      </section>
-      <section class="workout-log">
-        <h3>Recent Workouts</h3>
-        <ul class="list-group">
-          <% for @workout in @user.workout_sessions %>
-          <li class="list-group-item">
-            <%= link_to @workout.name, @workout %>
-            <span class="pull-right">
-              <%= time_ago_in_words @workout.created_at %> ago
-            </span>
-          </li>
-          <% end %>
-        </ul>
-      </section>
+        <%= link_to "New Routine", new_routine_path(), { class: 'btn btn-lg btn-primary' } %>
+      </div>
+    </section>
+
+    <section role="tabpanel">
+
+      <!-- Nav tabs -->
+      <ul class="nav nav-tabs" role="tablist">
+        <li role="presentation" class="active"><a href="#workouts" aria-controls="workouts" role="tab" data-toggle="tab">Workouts</a></li>
+        <li role="presentation"><a href="#routines" aria-controls="routines" role="tab" data-toggle="tab">Routines</a></li>
+        <li role="presentation"><a href="#achievments" aria-controls="achievments" role="tab" data-toggle="tab">Achievments</a></li>
+      </ul>
+
+      <!-- Tab panes -->
+      <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active" id="workouts">
+
+          <section class="workout-log">
+
+            <h3>Recent Workouts</h3>
+            <ul class="list-group">
+              <% for @workout in @user.workout_sessions.recent %>
+              <li class="list-group-item">
+                <%= link_to @workout.name, @workout %>
+                <span class="pull-right">
+                  <%= time_ago_in_words @workout.created_at %> ago
+                </span>
+              </li>
+              <% end %>
+              <% if @user.workout_sessions.empty? %>
+              <div class="text-center">
+                Looks like there's nothing here. Why don't you record a workout now?
+              </div>
+              <% end %>
+            </ul>
+          </section>
+
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="routines">
+          <section class="routine-list">
+
+            <h3>My Routines</h3>
+            <ul class="list-group">
+              <% for @routine in @user.routines %>
+              <li class="list-group-item">
+                <%= link_to @routine.name, edit_routine_path(@routine) %>
+                <span class="pull-right">
+                  Created <%= time_ago_in_words @routine.updated_at %> ago
+                  <%= link_to '', routine_path(@routine), method: :delete , class: "glyphicon glyphicon-remove" %>
+                </span>
+              </li>
+              <% end %>
+              <% if @user.routines.empty? %>
+              <div class="text-center">
+                Looks like there's nothing here. Why don't you create a routine now?
+              </div>
+              <% end %>
+            </ul>
+          </section>
+        </div>
+        <div role="tabpanel" class="tab-pane fade" id="achievments">Coming soon!</div>
+      </div>
+
+  </section>
+
+
 
   </div>
 </div>

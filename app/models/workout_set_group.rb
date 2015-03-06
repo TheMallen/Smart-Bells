@@ -7,6 +7,10 @@ class WorkoutSetGroup < ActiveRecord::Base
   belongs_to :workout_session
   belongs_to :exercise
 
+  validates :resistance,
+    presence: true,
+    numericality: { only_integer: true }
+
   # create a workout set group from a set group template
   def self.new_for_set_group set_group, options = {}
     wsg = WorkoutSetGroup.new options

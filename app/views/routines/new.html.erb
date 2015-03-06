@@ -1,0 +1,17 @@
+ <%
+  # new.html.erb
+  # generates the form for routine data
+  # contains javascript and stuff
+  %>
+
+
+<% provide(:page_name, "Edit your routine ") %>
+<div class="container">
+ <h1>Create a Routine</h1>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+       <%= render :partial => "routines/edit_form" %>
+    </div>
+  </div>
+</div>

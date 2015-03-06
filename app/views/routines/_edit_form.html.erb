@@ -1,0 +1,77 @@
+<%= render partial: "shared/error_message", locals: {errors: @routine.errors} %>
+<%= form_for(@routine) do |f| %>
+  <%= f.label :name, 'Name:' %>
+  <%= f.text_field :name, class: "form-control" %>
+
+  <div>
+
+   <h2> Set Groups
+     <span id="add-button" class="glyphicon glyphicon-plus btn btn-primary text-center"></span>
+   </h2>
+
+  <% @routine.set_groups.each_with_index do |set, index| %>
+   <div class="set-group-sub-form">
+
+    <%= f.fields_for :set_groups, set do |ff| %>
+        <%= ff.label :exercise_id, 'Exercise:' %>
+        <%= ff.collection_select :exercise_id, Exercise.all, :id, :name, { prompt: true }, class: "form-control" %>
+
+        <%= ff.label :reps_per_set, 'Reps Per Set:' %>
+        <%= ff.number_field :reps_per_set, class: 'form-control' %>
+
+        <%= ff.label :number_of_sets, 'Number of Sets:' %>
+        <%= ff.number_field :number_of_sets, class: 'form-control' %>
+      <% end %>
+    <% end %>
+
+   </div>
+ </div>
+
+  <%= f.submit "Save", class: "btn btn-primary" %>
+<% end %>
+
+
+<script>
+    function newSetGroup() {
+
+      var setGroupArray = document.querySelectorAll(".set-group-sub-form");
+      var fields = setGroupArray[setGroupArray.length - 1];
+      var newFields = fields.cloneNode(true);
+
+      fields.parentNode.appendChild(newFields);
+
+      var labels =  fields.querySelectorAll('label');
+      var inputs = fields.querySelectorAll('input');
+      var selects = fields.querySelectorAll('select');
+
+      function iterateLabelAttributes(label) {
+        label.setAttribute('for',
+            label.getAttribute('for').replace(/\_\d+_/g, "_"+setGroupArray.length+"_")
+        );
+      }
+      function iterateInputAttributes(input) {
+        input.setAttribute('name',
+            input.getAttribute('name').replace(/\[\d+\]/g, "["+setGroupArray.length+"]")
+        );
+        input.setAttribute('id',
+            input.getAttribute('id').replace(/_\d+_/g, "_"+setGroupArray.length+"_")
+        );
+      }
+
+      var i;
+      for (i = 0; i < labels.length; ++i) {
+        iterateLabelAttributes(labels[i]);
+      }
+      for (i = 0; i < inputs.length; ++i) {
+        iterateInputAttributes(inputs[i]);
+      }
+      for (i = 0; i < selects.length; ++i) {
+        iterateInputAttributes(selects[i]);
+      }
+
+    }
+
+    document.getElementById('add-button').addEventListener('click', function(){
+    newSetGroup();
+    });
+</script>

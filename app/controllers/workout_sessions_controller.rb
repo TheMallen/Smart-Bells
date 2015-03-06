@@ -12,9 +12,7 @@ class WorkoutSessionsController < ApplicationController
   def choose_routine
     @choices = Array.new
     # Later we will want to filter this
-    Routine.find_each do |r|
-      @choices << r
-    end
+    @choices = current_user.routines + Routine.all.only_public
   end
 
   def new_for_routine

@@ -11,7 +11,7 @@ if errors && errors.any? %>
     <div class="alert alert-danger">
       The form contains <%= pluralize(errors.count, "error") %>.
     </div>
-    <ul>
+    <ul class="error-list">
     <% errors.full_messages.each do |msg| %>
       <li><%= msg %></li>
     <% end %>
