@@ -19,7 +19,7 @@ class ExercisesController < ApplicationController
       flash[:success] = "Exercise #{@exercise.name} created."
       redirect_to user_url current_user
     else
-      render 'new_for_routine'
+      render 'new'
     end
   end
 

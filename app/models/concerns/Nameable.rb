@@ -6,7 +6,7 @@ module Nameable
 
     validates :name,
       presence: true,
-      length: { maximum: 20, minimum: 6 },
+      length: { maximum: 20, minimum: 3 },
       uniqueness: { case_sensitive: false }
   end
 
