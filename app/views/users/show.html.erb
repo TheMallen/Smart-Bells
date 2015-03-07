@@ -12,8 +12,9 @@
         <%= @user.username %>
       </h1>
       <div class="user-actions">
-        <%= link_to "New Workout", choose_routine_workout_sessions_path(), { class: 'btn btn-lg btn-primary' } %>
-        <%= link_to "New Routine", new_routine_path(), { class: 'btn btn-lg btn-primary' } %>
+        <%= link_to "Record a Workout", choose_routine_workout_sessions_path(), { class: 'btn btn-lg btn-primary' } %>
+        <%= link_to "Design a Routine", new_routine_path(), { class: 'btn btn-lg btn-primary' } %>
+        <%= link_to "Add an Exercise", new_exercise_path(), { class: 'btn btn-default' } %>
       </div>
     </section>
 
@@ -24,6 +25,7 @@
         <li role="presentation" class="active"><a href="#workouts" aria-controls="workouts" role="tab" data-toggle="tab">Workouts</a></li>
         <li role="presentation"><a href="#routines" aria-controls="routines" role="tab" data-toggle="tab">Routines</a></li>
         <li role="presentation"><a href="#achievments" aria-controls="achievments" role="tab" data-toggle="tab">Achievments</a></li>
+        <li role="presentation"><a href="#records" aria-controls="records" role="tab" data-toggle="tab">Records</a></li>
       </ul>
 
       <!-- Tab panes -->
@@ -74,6 +76,28 @@
           </section>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="achievments">Coming soon!</div>
+        <div role="tabpanel" class="tab-pane fade" id="records">
+          <section class="records-list">
+
+            <h3>My Records</h3>
+            <ul class="list-group">
+              <% for @record in @user.personal_records %>
+              <li class="list-group-item">
+                <%= @record.exercise.name %> : <%= @record.resistance %> lbs
+                <span class="pull-right">
+                  As of <%= time_ago_in_words @record.updated_at %> ago
+                </span>
+              </li>
+              <% end %>
+              <% if @user.personal_records.empty? %>
+              <div class="text-center">
+                Looks like there's nothing here. Why don't you make some records now?
+              </div>
+              <% end %>
+            </ul>
+          </section>
+
+        </div>
       </div>
 
   </section>

@@ -3,6 +3,8 @@
 # during a workout session
 # will usually be built based on a set group.
 class WorkoutSetGroup < ActiveRecord::Base
+  after_save :update_personal_record
+
   # setup the associations
   belongs_to :workout_session
   belongs_to :exercise
@@ -37,14 +39,31 @@ class WorkoutSetGroup < ActiveRecord::Base
 
   # Find any prs for the given xercise, if there are any
   def self.next_resistance_for_exercise exercise, user
-    PersonalRecord.find_by exercise_id: exercise.id, user_id: user.id
+    pr = PersonalRecord.find_by(exercise_id: exercise.id, user_id: user.id)
+    if pr
+      pr.resistance + exercise.increase_per_session
+    else
+      45
+    end
   end
 
 
   # Find any prs for the given xercise, if there are any
-  def self.next_resistance_for_exercise_name exercise_name, user_id
-    exercise_id = (Exercise.find_by name: exercise_name).id
-    PersonalRecord.find_by exercise_id: exercise_id, user_id: user_id
+  def self.next_resistance_for_exercise_name exercise_name, user
+    next_resistance_for_exercise (Exercise.find_by name: exercise_name), user
   end
 
+  def update_personal_record
+    attributes = {
+      user_id: self.workout_session.user_id,
+      exercise_id: self.exercise_id
+    }
+    pr = PersonalRecord.where(attributes).first_or_initialize
+
+    pr.resistance ||= self.resistance
+
+    pr.resistance = self.resistance unless pr.resistance > self.resistance
+
+    pr.save
+  end
 end

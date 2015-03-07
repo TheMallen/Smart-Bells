@@ -6,7 +6,7 @@
     <div class="container">
     <div class="navbar-header">
     <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-      Menu
+      <span class="glyphicon glyphicon-menu-hamburger"></span>
     </button>
     <%= link_to "SmartBells", "/", class: "navbar-brand" %>
   </div>
@@ -25,8 +25,9 @@
                   <b class="caret"></b>
                 </a>
                 <ul class="dropdown-menu">
-                  <li><%= smart_link_to "Profile", current_user %></li>
-                  <li><%= smart_link_to "New Workout", choose_routine_workout_sessions_path %></li>
+                  <li><%= smart_link_to "Dashboard", current_user %></li>
+                  <li><%= smart_link_to "Record a Workout", choose_routine_workout_sessions_path %></li>
+                  <li><%= smart_link_to "Design a Routine", new_routine_path %></li>
                   <li class="divider"></li>
                   <li>
                     <%= smart_link_to "Log out", logout_path, method: "delete" %>

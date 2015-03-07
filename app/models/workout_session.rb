@@ -12,6 +12,7 @@ class WorkoutSession < ActiveRecord::Base
   has_many :exercises, through: :workout_set_groups
   accepts_nested_attributes_for :workout_set_groups
 
+  # Is not nameable because the name field is not unique
   validates :name,
     presence: true
 
@@ -28,9 +29,9 @@ class WorkoutSession < ActiveRecord::Base
         resistance = WorkoutSetGroup.next_resistance_for_exercise set_group.exercise, user
         options = {}
         if resistance
-          options.resistance = resistance
+          options[:resistance] = resistance
         end
-        wsg = WorkoutSetGroup.new_for_set_group set_group, resistance
+        wsg = WorkoutSetGroup.new_for_set_group set_group, options
         session.workout_set_groups << wsg
       end
 

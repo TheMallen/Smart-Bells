@@ -30,4 +30,8 @@ Rails.application.routes.draw do
   resources :routines do
   end
 
+  # routes for defining new exercise
+  get 'exercises', to: 'exercises#new', as: 'new_exercise'
+  post 'exercises', to: 'exercises#create', as: 'exercises'
+
 end

@@ -3,15 +3,13 @@
 # Model for a set of workouts, used to define a template
 # for workout sessions.
 class Routine < ActiveRecord::Base
+
+  include Nameable
+
   belongs_to :user
   has_many :set_groups
   has_many :exercises, through: :set_groups
   accepts_nested_attributes_for :set_groups
-
-  validates :name,
-  presence: true,
-  length: { maximum: 20, minimum: 6 },
-  uniqueness: { case_sensitive: false }
 
   def add_set_group_for_exercise exercise_name, options={}
     group = SetGroup.new_for_exercise exercise_name, options

@@ -31,6 +31,7 @@ class WorkoutSessionsController < ApplicationController
     @workout_session = WorkoutSession.new workout_session_params
     @workout_session.user = current_user
     if @workout_session.save
+      flash[:success] = "Workout Session #{@workout_session.name} logged!"
       redirect_to user_url current_user
     else
       render 'new_for_routine'

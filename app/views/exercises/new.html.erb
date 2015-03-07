@@ -1,0 +1,24 @@
+<%
+# new.html.erb
+# By Mathew Allen
+# Form for exercise creation
+%>
+<% provide(:page_name, 'New Exercise') %>
+<div class="container">
+ <h1>Sign up</h1>
+
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3">
+      <%= form_for(@exercise) do |f| %>
+      <%= render partial: "shared/error_message", locals: {errors: @exercise.errors} %>
+        <%= f.label :name %>
+        <%= f.text_field :name, class: 'form-control' %>
+
+        <%= f.label :increase_per_session %>
+        <%= f.number_field :increase_per_session, class: 'form-control' %>
+
+        <%= f.submit "Save Exercise", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+</div>

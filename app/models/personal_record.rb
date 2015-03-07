@@ -4,4 +4,13 @@ class PersonalRecord < ActiveRecord::Base
   # Set up the associations for this exercise
   belongs_to :user
   belongs_to :exercise
+
+  class << self
+    def new_for_set_group set_group, options = {}
+      pr = PersonalRecord.find_or_initialize exercise_id: set_group.exercise_id,
+                                             user_id: set_group.user_id
+      pr.update resistance: set_group.resistance
+    end
+  end
+
 end
