@@ -1,0 +1,30 @@
+<%
+# _routines.html.erb
+# By Mathew Allen
+# Routines list partial for user
+%>
+<section class="routine-list">
+
+  <h3>My Routines</h3>
+  <ul class="list-group">
+    <% for @routine in @user.routines %>
+    <li class="list-group-item">
+      <%= link_to edit_routine_path(@routine) do %>
+        <span>
+        <i class="glyphicon glyphicon-pencil"></i>
+        <%= @routine.name %>
+        </span>
+      <% end %>
+      <span class="pull-right">
+        Created <%= time_ago_in_words @routine.updated_at %> ago
+        <%= link_to '', routine_path(@routine), method: :delete , class: "glyphicon glyphicon-remove" %>
+      </span>
+    </li>
+    <% end %>
+    <% if @user.routines.empty? %>
+    <div class="text-center">
+      Looks like there's nothing here. Why don't you create a routine now?
+    </div>
+    <% end %>
+  </ul>
+</section>

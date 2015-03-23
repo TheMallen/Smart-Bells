@@ -1,3 +1,9 @@
+##
+# Nameable.rb
+# By Mathew Allen
+# A concern for anything which can be named
+# Helps keep things DRY :)
+##
 module Nameable
   extend ActiveSupport::Concern
 

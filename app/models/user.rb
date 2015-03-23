@@ -5,6 +5,10 @@
 # As a result I am happy to show them eachothers usernames but emails seems a little scummy.
 # That being said I love when websites allow me to login with email or username so I have implemented that.
 class User < ActiveRecord::Base
+
+  # Can get achievments
+  include Achiever
+
   # From Ruby on Rails Tutorial (reference 1)
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 

@@ -1,0 +1,30 @@
+<%
+# _workouts.html.erb
+# By Mathew Allen
+# workout list partial for user
+%>
+<section class="workout-log">
+
+  <h3>Recent Workouts</h3>
+  <ul class="list-group">
+    <% for @workout in @user.workout_sessions.recent %>
+    <li class="list-group-item">
+      <%= link_to @workout do %>
+        <span>
+        <i class="glyphicon glyphicon-pencil"></i>
+        <%= @workout.name %>
+        </span>
+      <% end %>
+      <span class="pull-right">
+        <%= time_ago_in_words @workout.created_at %> ago
+      </span>
+    </li>
+    <% end %>
+    <% if @user.workout_sessions.empty? %>
+    <div class="text-center">
+      Looks like there's nothing here. Why don't you record a workout now?
+    </div>
+    <% end %>
+  </ul>
+
+</section>

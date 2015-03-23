@@ -22,5 +22,11 @@ module WorkoutApp
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
+
+    # Add model subdirectories to autoload
+    config.eager_load_paths += Dir[Rails.root.join('app', 'models', '{**/}')]
+
+    # Activate observers
+    config.active_record.observers = :puts_observer, :workout_session_achievement_observer
   end
 end

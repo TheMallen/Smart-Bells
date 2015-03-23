@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
   # root route
   root 'static_pages#home'
+  get 'about', to: 'static_pages#about' 
   get 'signup' => 'users#new'
 
   # login/out routes

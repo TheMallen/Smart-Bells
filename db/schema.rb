@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150306054707) do
+ActiveRecord::Schema.define(version: 20150323044135) do
+
+  create_table "achievements", force: :cascade do |t|
+    t.string "type"
+    t.string "name"
+    t.text "description"
+    t.integer "user_id"
+    t.datetime "created_at",           null: false
+    t.datetime "updated_at",           null: false
+  end
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
@@ -36,10 +45,10 @@ ActiveRecord::Schema.define(version: 20150306054707) do
 
   create_table "routines", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
     t.integer  "user_id"
-    t.boolean  "is_public"
+    t.boolean  "is_public",  default: false
   end
 
   add_index "routines", ["user_id"], name: "index_routines_on_user_id"

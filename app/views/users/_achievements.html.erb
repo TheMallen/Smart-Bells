@@ -1,0 +1,24 @@
+<%
+# _achievements.html.erb
+# By Mathew Allen
+# Achievements list partial for user
+%>
+<section class="achievements-list">
+
+  <h3>My Achievements</h3>
+  <ul class="list-group">
+    <% for @achievement in @user.achievements %>
+    <li class="list-group-item">
+      <%= @achievement.name %> : <%= @achievement.description %>
+      <span class="pull-right">
+        As of <%= time_ago_in_words @achievement.updated_at %> ago
+      </span>
+    </li>
+    <% end %>
+    <% if @user.achievements.empty? %>
+    <div class="text-center">
+      Looks like there's nothing here. Why don't you reach some achievements now?
+    </div>
+    <% end %>
+  </ul>
+</section>

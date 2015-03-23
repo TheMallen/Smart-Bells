@@ -1,24 +1,27 @@
-<%= render partial: "shared/error_message", locals: {errors: @routine.errors} %>
-<%= form_for(@routine) do |f| %>
+<%
+# _create_form.html.erb
+# allows creation of custom workout sessions
+# uses javascript to dynamically add set groups
+%>
+<%= render partial: "shared/error_message", locals: {errors: @workout_session.errors} %>
+<%= form_for(@workout_session) do |f| %>
   <%= f.label :name, 'Name:' %>
   <%= f.text_field :name, class: "form-control" %>
 
-  <%= f.radio_button :is_public, true %>
-  <%= f.label :is_public, "Public" %>
-  <%= f.radio_button :is_public, false %>
-  <%= f.label :age_adult, "Private" %>
   <div>
 
    <h2> Set Groups
      <span id="add-button" class="glyphicon glyphicon-plus btn btn-primary text-center"></span>
    </h2>
-
-  <% @routine.set_groups.each_with_index do |set, index| %>
+  <% @workout_session.workout_set_groups.each_with_index do |set, index| %>
    <div class="set-group-sub-form">
 
-    <%= f.fields_for :set_groups, set do |ff| %>
+    <%= f.fields_for :workout_set_groups, set do |ff| %>
         <%= ff.label :exercise_id, 'Exercise:' %>
         <%= ff.collection_select :exercise_id, Exercise.all, :id, :name, { prompt: true }, class: "form-control" %>
+
+        <%= ff.label :resistance, 'Resistance Level:' %>
+        <%= ff.number_field :resistance, class: 'form-control' %>
 
         <%= ff.label :reps_per_set, 'Reps Per Set:' %>
         <%= ff.number_field :reps_per_set, class: 'form-control' %>
@@ -31,12 +34,11 @@
    </div>
  </div>
 
-  <%= f.submit "Save", class: "btn btn-primary" %>
+   <%= f.submit "Save", class: "btn btn-primary" %>
 <% end %>
 
 
 <script>
-
     function newSetGroup() {
 
       var setGroupArray = document.querySelectorAll(".set-group-sub-form");

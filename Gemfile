@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+# Include rails observers since they were removed in rails 4
+gem 'rails-observers'
 # Include the Bootstrap SCSS framework :)
 gem 'bootstrap-sass', '~> 3.3.3'
 # Use SCSS for stylesheets
@@ -18,7 +20,7 @@ gem 'jquery-rails'
 gem 'bcrypt', '3.1.7'
 # Speed up page loading
 gem 'turbolinks'
-  
+
 # Windows helpers
 if Gem.win_platform?
   # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

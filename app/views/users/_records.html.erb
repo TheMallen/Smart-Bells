@@ -1,0 +1,24 @@
+<%
+# _records.html.erb
+# By Mathew Allen
+# Records list partial for user
+%>
+<section class="records-list">
+
+  <h3>My Records</h3>
+  <ul class="list-group">
+    <% for @record in @user.personal_records %>
+    <li class="list-group-item">
+      <%= @record.exercise.name %> : <%= @record.resistance %> lbs
+      <span class="pull-right">
+        As of <%= time_ago_in_words @record.updated_at %> ago
+      </span>
+    </li>
+    <% end %>
+    <% if @user.personal_records.empty? %>
+    <div class="text-center">
+      Looks like there's nothing here. Why don't you make some records now?
+    </div>
+    <% end %>
+  </ul>
+</section>

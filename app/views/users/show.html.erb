@@ -22,81 +22,45 @@
 
       <!-- Nav tabs -->
       <ul class="nav nav-tabs" role="tablist">
-        <li role="presentation" class="active"><a href="#workouts" aria-controls="workouts" role="tab" data-toggle="tab">Workouts</a></li>
-        <li role="presentation"><a href="#routines" aria-controls="routines" role="tab" data-toggle="tab">Routines</a></li>
-        <li role="presentation"><a href="#achievments" aria-controls="achievments" role="tab" data-toggle="tab">Achievments</a></li>
-        <li role="presentation"><a href="#records" aria-controls="records" role="tab" data-toggle="tab">Records</a></li>
+        <li role="presentation" class="active">
+          <a href="#workouts" aria-controls="workouts" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-list"></i>
+            <span class="hidden-xs">Workouts</span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#routines" aria-controls="routines" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-calendar"></i>
+            <span class="hidden-xs">Routines</span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#achievements" aria-controls="achievements" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-flag"></i>
+            <span class="hidden-xs">Achievements</span>
+          </a>
+        </li>
+        <li role="presentation">
+          <a href="#records" aria-controls="records" role="tab" data-toggle="tab">
+            <i class="glyphicon glyphicon-stats"></i>
+            <span class="hidden-xs">Records</span>
+          </a>
+        </li>
       </ul>
 
       <!-- Tab panes -->
       <div class="tab-content">
         <div role="tabpanel" class="tab-pane active" id="workouts">
-
-          <section class="workout-log">
-
-            <h3>Recent Workouts</h3>
-            <ul class="list-group">
-              <% for @workout in @user.workout_sessions.recent %>
-              <li class="list-group-item">
-                <%= link_to @workout.name, @workout %>
-                <span class="pull-right">
-                  <%= time_ago_in_words @workout.created_at %> ago
-                </span>
-              </li>
-              <% end %>
-              <% if @user.workout_sessions.empty? %>
-              <div class="text-center">
-                Looks like there's nothing here. Why don't you record a workout now?
-              </div>
-              <% end %>
-            </ul>
-          </section>
-
+          <%= render :partial => "users/workouts" %>
         </div>
         <div role="tabpanel" class="tab-pane fade" id="routines">
-          <section class="routine-list">
-
-            <h3>My Routines</h3>
-            <ul class="list-group">
-              <% for @routine in @user.routines %>
-              <li class="list-group-item">
-                <%= link_to @routine.name, edit_routine_path(@routine) %>
-                <span class="pull-right">
-                  Created <%= time_ago_in_words @routine.updated_at %> ago
-                  <%= link_to '', routine_path(@routine), method: :delete , class: "glyphicon glyphicon-remove" %>
-                </span>
-              </li>
-              <% end %>
-              <% if @user.routines.empty? %>
-              <div class="text-center">
-                Looks like there's nothing here. Why don't you create a routine now?
-              </div>
-              <% end %>
-            </ul>
-          </section>
+          <%= render :partial => "users/routines" %>
         </div>
-        <div role="tabpanel" class="tab-pane fade" id="achievments">Coming soon!</div>
+        <div role="tabpanel" class="tab-pane fade" id="achievements">
+          <%= render :partial => "users/achievements" %>
+        </div>
         <div role="tabpanel" class="tab-pane fade" id="records">
-          <section class="records-list">
-
-            <h3>My Records</h3>
-            <ul class="list-group">
-              <% for @record in @user.personal_records %>
-              <li class="list-group-item">
-                <%= @record.exercise.name %> : <%= @record.resistance %> lbs
-                <span class="pull-right">
-                  As of <%= time_ago_in_words @record.updated_at %> ago
-                </span>
-              </li>
-              <% end %>
-              <% if @user.personal_records.empty? %>
-              <div class="text-center">
-                Looks like there's nothing here. Why don't you make some records now?
-              </div>
-              <% end %>
-            </ul>
-          </section>
-
+          <%= render :partial => "users/records" %>
         </div>
       </div>
 

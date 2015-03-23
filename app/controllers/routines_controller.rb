@@ -66,6 +66,7 @@ class RoutinesController < ApplicationController
   def routine_params
     params.require(:routine)
           .permit :name,
+                  :is_public,
                   set_groups_attributes: [
                     :reps_per_set,
                     :number_of_sets,

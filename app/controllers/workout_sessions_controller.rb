@@ -10,9 +10,8 @@ class WorkoutSessionsController < ApplicationController
 
   # Displays all routines currently in the system as options for a new workout
   def choose_routine
-    @choices = Array.new
-    # Later we will want to filter this
-    @choices = current_user.routines + Routine.all.only_public
+    @my_choices = current_user.routines
+    @public_choices = Routine.all.only_public
   end
 
   def new_for_routine
@@ -23,6 +22,7 @@ class WorkoutSessionsController < ApplicationController
   # rails will then magically render the corresponding template
   def new
     @workout_session = WorkoutSession.new
+    @workout_session.workout_set_groups << WorkoutSetGroup.new
   end
 
   # The create action creates a new workout session from the POST data
@@ -76,6 +76,7 @@ class WorkoutSessionsController < ApplicationController
   def workout_session_params
     params.require(:workout_session)
           .permit :name,
+                  :is_public,
                   workout_set_groups_attributes: [
                     :reps_per_set,
                     :number_of_sets,
