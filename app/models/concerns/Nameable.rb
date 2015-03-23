@@ -7,6 +7,7 @@
 module Nameable
   extend ActiveSupport::Concern
 
+  # Callback for when the mixin is included
   included do
     before_save :titleize_name
 
@@ -16,6 +17,7 @@ module Nameable
       uniqueness: { case_sensitive: false }
   end
 
+  # titleize's the name attribute
   def titleize_name
     self.name = name.titleize
   end

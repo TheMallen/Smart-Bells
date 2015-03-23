@@ -2,6 +2,7 @@
 # A model which represents some time spent at a gym
 # Can be based on a routine or (down the line) custom
 class WorkoutSession < ActiveRecord::Base
+  # always sort by created_at unless otherwise specified
   default_scope do
     order created_at: :desc
   end

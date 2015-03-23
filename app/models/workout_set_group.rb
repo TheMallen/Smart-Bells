@@ -47,12 +47,12 @@ class WorkoutSetGroup < ActiveRecord::Base
     end
   end
 
-
   # Find any prs for the given xercise, if there are any
   def self.next_resistance_for_exercise_name exercise_name, user
     next_resistance_for_exercise (Exercise.find_by name: exercise_name), user
   end
 
+  # Update the associated user's pr for the associated exercise
   def update_personal_record
     attributes = {
       user_id: self.workout_session.user_id,

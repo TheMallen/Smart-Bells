@@ -5,7 +5,9 @@ class PersonalRecord < ActiveRecord::Base
   belongs_to :user
   belongs_to :exercise
 
+  # Static methods
   class << self
+    # create a pr for the set_group given
     def new_for_set_group set_group, options = {}
       pr = PersonalRecord.find_or_initialize exercise_id: set_group.exercise_id,
                                              user_id: set_group.user_id

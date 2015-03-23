@@ -1,4 +1,5 @@
 # app/models/observers/puts_observer.rb
+# test observer outputs to logs
 class PutsObserver < ActiveRecord::Observer
   observe :workout_session
 

@@ -3,15 +3,18 @@
 # Controller which sets up resourceful actions for interacting with exercises models.
 class ExercisesController < ApplicationController
 
+  # Import security mixin
   include Securable
 
   # Only logged in users have access to this resource
   before_action :require_login
 
+  # Create an exercise instance and bind it to the form (magical rendeirng)
   def new
     @exercise = Exercise.new
   end
 
+  # Attempt to persist the exerise instance and deal with the consequences
   def create
     @exercise = Exercise.new exercise_params
     @exercise.user_id = current_user.id
