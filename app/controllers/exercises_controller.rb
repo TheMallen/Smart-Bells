@@ -26,6 +26,7 @@ class ExercisesController < ApplicationController
     end
   end
 
+  # Setup parameter filtering for forms
   def exercise_params
     params.require(:exercise)
           .permit :increase_per_session,

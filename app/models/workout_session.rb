@@ -39,14 +39,17 @@ class WorkoutSession < ActiveRecord::Base
       session
     end
 
+    # simple helper for chaining queries
     def recent
       since 1.month.ago
     end
 
+    # also a helper for chaining queries
     def one
       limit 1
     end
 
+    # helper for chaining queriess
     def since time
       where "created_at >= ?", time
     end

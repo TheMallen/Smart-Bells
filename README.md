@@ -24,6 +24,16 @@ For paths which are folders, assume all contents created by the author:
 please ignore the following always:
 -`.keep` files
 
+Install Guide
+-------------
+1. Install Ruby 2.0, Rails and the associated tooling using [the windows installer.](http://railsinstaller.org/en)
+2. Navigate to a folder which you would like to use for development.
+3. Clone this repository using `git clone https://github.com/TheMallen/workout-app.git`
+4. Navigate into the directory created by git for the project. By default this will be `workout-app`.
+5. Run `bundle install` to install all dependencies
+6. In your console, run `rake db:init` to initialize the development database
+
+
 General Sources
 ---------------
 1. Ruby on Rails Tutorial (3rd Ed.). (n.d.). Retrieved February 23, 2015, from https://www.railstutorial.org/book
