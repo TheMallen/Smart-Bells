@@ -35,4 +35,12 @@ Rails.application.routes.draw do
   get 'exercises', to: 'exercises#new', as: 'new_exercise'
   post 'exercises', to: 'exercises#create', as: 'exercises'
 
+  # api
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :create, :show, :update, :destroy]
+      resources :workout_sessions, only: [:index, :create, :show, :update, :destroy]
+    end
+  end
+
 end

@@ -4,6 +4,10 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
+# Filter query results easy
+gem 'active_hash_relation'
+# Serializers
+gem 'active_model_serializers'
 # Include rails observers since they were removed in rails 4
 gem 'rails-observers'
 # Include the Bootstrap SCSS framework :)
