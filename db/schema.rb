@@ -14,13 +14,15 @@
 ActiveRecord::Schema.define(version: 20150323044135) do
 
   create_table "achievements", force: :cascade do |t|
-    t.string "type"
-    t.string "name"
-    t.text "description"
-    t.integer "user_id"
-    t.datetime "created_at",           null: false
-    t.datetime "updated_at",           null: false
+    t.string   "type"
+    t.string   "name"
+    t.text     "description"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "user_id"
   end
+
+  add_index "achievements", ["user_id"], name: "index_achievements_on_user_id"
 
   create_table "exercises", force: :cascade do |t|
     t.string   "name"
@@ -42,6 +44,7 @@ ActiveRecord::Schema.define(version: 20150323044135) do
   end
 
   add_index "personal_records", ["exercise_id"], name: "index_personal_records_on_exercise_id"
+  add_index "personal_records", ["user_id"], name: "index_personal_records_on_user_id"
 
   create_table "routines", force: :cascade do |t|
     t.string   "name"
@@ -80,6 +83,8 @@ ActiveRecord::Schema.define(version: 20150323044135) do
     t.string   "name"
   end
 
+  add_index "workout_sessions", ["user_id"], name: "index_workout_sessions_on_user_id"
+
   create_table "workout_set_groups", force: :cascade do |t|
     t.integer  "resistance",         default: 45
     t.integer  "number_of_sets"
@@ -102,5 +107,8 @@ ActiveRecord::Schema.define(version: 20150323044135) do
     t.integer  "workout_session_id"
     t.boolean  "is_complete",        default: false
   end
+
+  add_index "workout_sets", ["exercise_id"], name: "index_workout_sets_on_exercise_id"
+  add_index "workout_sets", ["workout_session_id"], name: "index_workout_sets_on_workout_session_id"
 
 end

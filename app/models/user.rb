@@ -7,7 +7,7 @@
 class User < ActiveRecord::Base
 
   # Can get achievments
-  include Achiever
+  include Shared::Achiever
 
   # From Ruby on Rails Tutorial (reference 1)
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i

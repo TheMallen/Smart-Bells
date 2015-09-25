@@ -5,7 +5,7 @@
 class Routine < ActiveRecord::Base
 
   # import nameable concern
-  include Nameable
+  include Shared::Nameable
 
   # setup associations and other model attributes
   belongs_to :user

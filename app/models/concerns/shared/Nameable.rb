@@ -4,7 +4,7 @@
 # A concern for anything which can be named
 # Helps keep things DRY :)
 ##
-module Nameable
+module Shared::Nameable
   extend ActiveSupport::Concern
 
   # Callback for when the mixin is included

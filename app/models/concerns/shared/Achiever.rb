@@ -3,7 +3,7 @@
 # By Mathew Allen
 # A concern for anything which can be awarded achievments.
 ##
-module Achiever
+module Shared::Achiever
   extend ActiveSupport::Concern
 
   # set up the association when this concern is included

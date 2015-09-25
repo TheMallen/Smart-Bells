@@ -4,7 +4,7 @@
 # Represents a type of exercise
 class Exercise < ActiveRecord::Base
 
-  include Nameable
+  include Shared::Nameable
 
   # set up the associations for this model
   has_many :set_groups
