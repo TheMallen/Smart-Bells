@@ -1,7 +1,19 @@
 Workout-App
 ===========
 
-This application was created for CST82333 by Mathew Allen.
+This application started as a school project and is being continued through singularity XL.
+
+Features
+--------
+This repo can be spun up to run the following:
+- Server rendered web app
+  - CRUD for Routines, Exercises, Workouts, users
+  - Achievement system
+  - Personal Record tracking
+- API
+  - CRUD for Routines, Exercises, Workouts, users
+  - Achievement system
+  - Personal Record tracking
 
 Commented Files
 ---------------
@@ -18,6 +30,8 @@ For paths which are folders, assume all contents created by the author:
 - `app/models/concerns`
 - `app/models/observers`
 - `app/models/achievement`
+- `app/serializers`
+- `app/policies`
 - `app/helpers/application_helper`
 - `config/routes.rb`
 
