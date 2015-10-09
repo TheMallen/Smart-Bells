@@ -1,0 +1,2 @@
+class WorkoutSessionPolicy < OwnedPolicy
+end

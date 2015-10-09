@@ -6,8 +6,6 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 # Filter query results easy
 gem 'active_hash_relation'
-# Serializers
-gem 'active_model_serializers'
 # Include rails observers since they were removed in rails 4
 gem 'rails-observers'
 # Include the Bootstrap SCSS framework :)
@@ -24,6 +22,14 @@ gem 'jquery-rails'
 gem 'bcrypt', '3.1.7'
 # Speed up page loading
 gem 'turbolinks'
+
+#api related
+gem 'rack-cors'
+gem 'pundit', '~> 0.3.0'
+gem 'active_model_serializers', '0.9.2'
+gem 'kaminari', '~> 0.16.1'
+#gem 'redis-throttle', git: 'git://github.com/andreareginato/redis-throttle.git'
+gem 'rspec-api_helpers', github: 'kollegorna/rspec-api_helpers'
 
 # Windows helpers
 if Gem.win_platform?

@@ -1,0 +1,2 @@
+class RoutinePolicy < OwnedPolicy
+end

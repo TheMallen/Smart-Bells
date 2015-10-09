@@ -1,0 +1,2 @@
+class WorkoutSetGroupPolicy < ApplicationPolicy
+end

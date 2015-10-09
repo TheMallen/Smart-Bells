@@ -28,5 +28,13 @@ module WorkoutApp
 
     # Activate observers
     config.active_record.observers = :puts_observer, :workout_session_achievement_observer
+
+    # Enable CORS
+    config.middleware.insert_before 0, "Rack::Cors" do
+    allow do
+      origins '*'
+      resource '*', :headers => :any, :methods => [:get, :post, :put, :patch, :delete, :options, :head]
+    end
+  end
   end
 end

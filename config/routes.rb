@@ -35,12 +35,59 @@ Rails.application.routes.draw do
   get 'exercises', to: 'exercises#new', as: 'new_exercise'
   post 'exercises', to: 'exercises#create', as: 'exercises'
 
-  # api
-  namespace :api do
-    namespace :v1 do
-      resources :users, only: [:index, :create, :show, :update, :destroy]
-      resources :workout_sessions, only: [:index, :create, :show, :update, :destroy]
+  ###
+  API
+  ###
+
+  add_relationship_links = proc do
+    collection do
+      get :index
+      put :update
+    end
+    member do
+      post :create
+      get :show
+      delete :destroy
     end
   end
 
+  # api
+  namespace :api do
+    namespace :v1 do
+      resources :users, only: [:index, :create, :show, :update, :destroy] do
+        namespace :links do
+          resources :workout_sessions, only: [] do
+            add_relationship_links.call
+          end
+          resources :routines, only: [] do
+            add_relationship_links.call
+          end
+          resources :personal_records, only: [:index, :show] do
+            add_relationship_links.call
+          end
+          resources :achievements, only: [:index, :show] do
+            add_relationship_links.call
+          end
+        end
+      end
+      resources :workout_sessions, only: [:index, :create, :show, :update, :destroy] do
+        namespace :links do
+          resources :workout_set_groups, only: [] do
+            add_relationship_links.call
+          end
+        end
+      end
+      resources :routines, only: [:index, :create, :show, :update, :destroy]  do
+        namespace :links do
+          resources :set_groups, only: [] do
+            add_relationship_links.call
+          end
+        end
+      end
+      resources :exercises, only: [:index, :create, :show, :update, :destroy]
+      resources :sessions, only: [:create]
+      resources :personal_records, only: [:index, :show]
+      resources :achievements, only: [:index, :show]
+    end
+  end
 end
