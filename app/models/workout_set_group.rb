@@ -3,6 +3,12 @@
 # during a workout session
 # will usually be built based on a set group.
 class WorkoutSetGroup < ActiveRecord::Base
+  attr_reader :exercise_name
+
+  def exercise_name
+    exercise.name
+  end
+
   after_save :update_personal_record
 
   # setup the associations

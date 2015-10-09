@@ -4,6 +4,12 @@
 # for example if I want to do 5 sets of something every week
 # I would create a setgroup representing this
 class SetGroup < ActiveRecord::Base
+  attr_reader :exercise_name
+
+  def exercise_name
+    exercise.name
+  end
+
   # set up associations
   belongs_to :routine
   belongs_to :exercise

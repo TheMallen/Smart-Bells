@@ -1,6 +1,11 @@
 # personal_record.rb
 # model for top scores of a user for a given exercise
 class PersonalRecord < ActiveRecord::Base
+  attr_reader :exercise_name
+
+  def exercise_name
+    exercise.name
+  end
   # Set up the associations for this exercise
   belongs_to :user
   belongs_to :exercise

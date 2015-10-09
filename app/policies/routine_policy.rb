@@ -1,2 +1,2 @@
-class RoutinePolicy < OwnedPolicy
+class RoutinePolicy < EasyPolicy
 end

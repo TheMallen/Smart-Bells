@@ -1,2 +1,2 @@
-class WorkoutSetGroupPolicy < ApplicationPolicy
+class WorkoutSetGroupPolicy < EasyPolicy
 end

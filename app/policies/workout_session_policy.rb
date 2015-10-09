@@ -1,2 +1,2 @@
-class WorkoutSessionPolicy < OwnedPolicy
+class WorkoutSessionPolicy < EasyPolicy
 end

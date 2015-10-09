@@ -55,7 +55,9 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :users, only: [:index, :create, :show, :update, :destroy] do
-        namespace :links do
+          resources :exercises, only: [] do
+            add_relationship_links.call
+          end
           resources :workout_sessions, only: [] do
             add_relationship_links.call
           end
@@ -68,22 +70,19 @@ Rails.application.routes.draw do
           resources :achievements, only: [:index, :show] do
             add_relationship_links.call
           end
-        end
       end
       resources :workout_sessions, only: [:index, :create, :show, :update, :destroy] do
-        namespace :links do
-          resources :workout_set_groups, only: [] do
-            add_relationship_links.call
-          end
+        resources :workout_set_groups, only: [] do
+          add_relationship_links.call
         end
       end
       resources :routines, only: [:index, :create, :show, :update, :destroy]  do
-        namespace :links do
-          resources :set_groups, only: [] do
-            add_relationship_links.call
-          end
+        resources :set_groups, only: [] do
+          add_relationship_links.call
         end
       end
+      resources :set_groups, only: [:index, :create, :show, :update, :destroy]
+      resources :workout_set_groups, only: [:index, :create, :show, :update, :destroy]
       resources :exercises, only: [:index, :create, :show, :update, :destroy]
       resources :sessions, only: [:create]
       resources :personal_records, only: [:index, :show]

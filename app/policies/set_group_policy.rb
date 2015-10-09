@@ -1,2 +1,2 @@
-class SetGroupPolicy < ApplicationPolicy
+class SetGroupPolicy < EasyPolicy
 end
