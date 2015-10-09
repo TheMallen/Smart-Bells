@@ -1,4 +1,4 @@
-class Api::V1::ExercisesController < Api::V1::BaseController
+class Api::V1::ExercisesController < Api::V1::ResourceController
   before_filter :authenticate_user!
 
   protected

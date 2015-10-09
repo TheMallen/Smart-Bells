@@ -37,20 +37,20 @@ class User < ActiveRecord::Base
     self.username = username.downcase
   end
 
-  # generate auth token on create
-  before_create do
-    self.authentication_token!
+  def new_authentication_token!
+    token = generate_authentication_token
+    self.authentication_token = token
+    self.save!(validate: false)
   end
 
-  def authentication_token!
+  def generate_authentication_token
+    token = SecureRandom.base64(64)
     loop do
-      self.authentication_token = SecureRandom.base64(64)
-      break unless User.find_by(authentication_token: authentication_token)
+      break unless User.find_by(authentication_token: token)
+      token = SecureRandom.base64(64)
     end
-    self.authentication_token
+    return token
   end
-
-
 
   # Set up associations for workouts
   has_many :workout_sessions

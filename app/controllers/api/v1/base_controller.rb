@@ -19,62 +19,6 @@ class Api::V1::BaseController < ApplicationController
                 :model_name_plural,
                 :serializer
 
-  # Metaprogram to figure out the model to use :)
-  def initialize
-    super
-    @model_name ||= controller_name.singularize
-    @model ||= @model_name.camelize.constantize
-    @model_name_plural ||= @model_name.pluralize
-    @created_path ||= "api_v1_#{@model_name.downcase}_path"
-    @serializer ||= Api::V1.const_get("#{@model.name}Serializer")
-  end
-
-  def index
-    records = filtered_records
-    render_list filtered_records
-  end
-
-  def show
-    record = @model.find(params[:id])
-    render(json: @serializer.new(record).to_json)
-  end
-
-  def create
-    record = @model.new(create_params)
-    return api_error(status: 422, errors: record.errors) unless record.valid?
-    record.save!
-
-    render(
-      json: @serializer.new(record).to_json,
-      status: 201,
-      location: eval("#{@created_path}(#{record.id})")
-    )
-  end
-
-  def update
-    record = @model.find(params[:id])
-    authorize record
-
-    unless record.update_attributes(update_params)
-      return api_error(status: 422, errors: record.errors)
-    end
-
-    render(
-      json: @serializer.new(record).to_json,
-      status: 200,
-      location: eval("#{@created_path}(#{user.id})"),
-      serializer: @serializer
-    )
-   end
-
-  def destroy
-    record = @model.find(params[:id])
-
-    return api_error(status: 500) unless record.destroy
-
-    head status: 204
-  end
-
   protected
 
   def render_list(records, options={})
@@ -146,10 +90,9 @@ class Api::V1::BaseController < ApplicationController
 
   def authenticate_user!
     token = params[:token]
-    if token
-      token ||= request.headers['X-Access-Token']
-      user = User.find_by authentication_token: token
-    end
+    token ||= request.headers['HTTP_X_ACCESS_TOKEN']
+
+    user = User.find_by authentication_token: token
     if user
       @current_user = user
     else
@@ -165,19 +108,8 @@ class Api::V1::BaseController < ApplicationController
     params
   end
 
-  private
-
   def jsonapi_format(errors)
-    return errors if errors.is_a? String
-    errors_hash = {}
-    errors.messages.each do |attribute, error|
-      array_hash = []
-      error.each do |e|
-        array_hash << { attribute: attribute, message: e }
-      end
-      errors_hash.merge! { attribute n => array_hash }
-    end
-
-    errors_hash
+    msg = errors
+    {errors: msg}
   end
 end
