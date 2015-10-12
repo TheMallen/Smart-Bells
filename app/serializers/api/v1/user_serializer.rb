@@ -3,8 +3,7 @@ class Api::V1::UserSerializer < Api::V1::BaseSerializer
              :email,
              :username,
              :created_at,
-             :updated_at,
-             :authentication_token
+             :updated_at
 
   # Set up associations for workouts
   has_many :workout_sessions
