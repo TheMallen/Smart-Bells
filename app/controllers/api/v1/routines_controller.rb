@@ -1,7 +1,14 @@
 class Api::V1::RoutinesController < Api::V1::ResourceController
   before_filter :authenticate_user!
+  wrap_parameters include: [:is_public,
+                            :name,
+                            :set_groups_attributes]
 
   protected
+
+  def create_with_current_user
+    true
+  end
 
   def filtered_records
     records = @model
@@ -17,6 +24,7 @@ class Api::V1::RoutinesController < Api::V1::ResourceController
       .require(:routine)
       .permit :name,
               :is_public,
+              :set_groups_attributes,
               set_groups_attributes: [
                 :reps_per_set,
                 :number_of_sets,

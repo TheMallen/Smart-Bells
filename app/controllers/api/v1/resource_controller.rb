@@ -30,6 +30,9 @@ class Api::V1::ResourceController < Api::V1::BaseController
 
   def create
     record = @model.new(create_params)
+    if create_with_current_user
+      record.user = current_user
+    end
     return api_error(status: 422, errors: record.errors) unless record.valid?
     record.save!
 
@@ -85,4 +88,7 @@ class Api::V1::ResourceController < Api::V1::BaseController
     records = policy_scope(records)
   end
 
+  def create_with_current_user
+    false
+  end
 end
