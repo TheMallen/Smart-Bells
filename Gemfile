@@ -54,7 +54,7 @@ end
 
 group :production do
   # Use postgres as the production db (on Heroku)
-  #gem 'pg'
+  gem 'pg'
   # Used by Heroku to serve static assets
   gem 'rails_12factor'
   # Use Unicorn as the app server
