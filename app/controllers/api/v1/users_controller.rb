@@ -10,7 +10,7 @@ class Api::V1::UsersController < Api::V1::ResourceController
         :email,
         :password,
         :password_confirmation,
-        :name
+        :username
       )
       .delete_if { |_k, v| v.nil? }
   end
